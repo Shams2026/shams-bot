@@ -15,7 +15,7 @@ def send_absent_alert():
     current_date = now.strftime("%Y-%m-%d")
 
     message = (
-        f"🚨 *تنبيه غياب - Shams*\n\n"
+        f"🚨 *تنبيه غياب *\n\n"
         f"👤 ولى امر الطالب : احمد مصطفى السيد\n"
         f"📅 التاريخ: {current_date}\n"
         f"⏰ الوقت (بتوقيت مصر): {current_time}\n\n"
