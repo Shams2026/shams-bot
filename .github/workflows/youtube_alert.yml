@@ -1,7 +1,7 @@
-name: "2- Shams: YouTube Alert" # الاسم الذي سيظهر في قائمة Actions
+name: "2- Shams: YouTube Alert"
 
 on:
-  workflow_dispatch: # لتشغيل البوت يدوياً
+  workflow_dispatch:
 
 jobs:
   run-youtube-bot:
@@ -12,5 +12,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - run: pip install requests
-      - run: python youtube.py # تأكد أن الاسم يطابق اسم ملف البايثون الجديد
+      
+      - name: Install Requirements
+        run: pip install -r requirements.txt  # ضروري لتشغيل البوت بتوقيت مصر
+
+      - name: Run Youtube Bot
+        run: python youtube.py  # تشغيل ملف اليوتيوب الجديد
