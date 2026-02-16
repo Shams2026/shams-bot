@@ -1,0 +1,27 @@
+import requests
+from datetime import datetime
+
+# بيانات بوت Shams المحفوظة
+TOKEN = "8305317876:AAHkPFr8idftz1Rgc6-tdCugaaZTrQsZnP4"
+CHAT_ID = "-5216371452"
+
+def send_youtube_alert():
+    now = datetime.now()
+    current_time = now.strftime("%I:%M %p")
+    current_date = now.strftime("%Y-%m-%d")
+
+    # الالتزام بقاعدة "الاسم" بدلاً من كومنت
+    message = (
+        f"🚨 *تنبيه Shams: تشتت انتباه*\n\n"
+        f"👤 الاسم: طالب مشتت الآن\n"
+        f"📅 التاريخ: {current_date}\n"
+        f"⏰ الوقت: {current_time}\n\n"
+        f"📺 *الحالة:* الطالب غادر المنصة التعليمية وفتح تطبيق **YouTube** حالياً."
+    )
+
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    payload = {"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"}
+    requests.post(url, json=payload)
+
+if __name__ == "__main__":
+    send_youtube_alert()
