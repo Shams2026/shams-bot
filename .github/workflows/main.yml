@@ -1,4 +1,4 @@
-name: Shams Bot Run
+name: alert from 3 to 5
 
 on:
   workflow_dispatch: # لتشغيله يدوياً
