@@ -1,22 +1,20 @@
-name: تنبيه فتح اليوتيوب الان
+name: "2- Shams: YouTube Alert"
+
 on:
-  repository_dispatch:
-    types: [youtube_opened] # كلمة السر التي يرسلها ملف absent من جهازك
+  workflow_dispatch:
 
 jobs:
-  send_telegram:
+  run-youtube-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Telegram
-        run: |
-          # الحصول على الوقت والتاريخ الحاليين
-          DATE=$(date +'%Y-%m-%d')
-          TIME=$(date +'%H:%M:%S')
-          
-          # نص الرسالة (الاسم، التاريخ، الوقت)
-          MESSAGE="⚠️ تنبيه من بوت Shams%0A----------%0A👤 الاسم: طالب مجتهد%0A🚫 النشاط: فتح اليوتيوب الآن%0A📅 التاريخ: $DATE%0A🕒 الوقت: $TIME"
-          
-          # إرسال الإشعار لتليجرام
-          curl -s -X POST "https://api.telegram.org/bot7647299098:AAEmA8FKF_KujX5NbclGMP-cZWFDcTAFA7s/sendMessage" \
-          -d "chat_id=-5202473852" \
-          -d "text=$MESSAGE"
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install Requirements
+        run: pip install -r requirements.txt  # ضروري لتشغيل البوت بتوقيت مصر
+
+      - name: Run Youtube Bot
+        run: python youtube.py  # تشغيل ملف اليوتيوب الجديد
